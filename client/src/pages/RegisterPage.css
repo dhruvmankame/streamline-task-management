@@ -2,6 +2,15 @@
 /* === Import Google Font === */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+/* === Force light text color for all inputs === */
+.register-card input,
+.register-card input[type="text"],
+.register-card input[type="email"],
+.register-card input[type="password"] {
+  color: #f1f5f9 !important;
+  -webkit-text-fill-color: #f1f5f9 !important;
+}
+
 /* === Base Container Styles === */
 .register-container {
   display: flex;
@@ -39,7 +48,7 @@
 
 /* === Register Card === */
 .register-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(15, 23, 42, 0.95);
   backdrop-filter: blur(20px);
   padding: 3rem 3.5rem;
   border-radius: 24px;
@@ -78,7 +87,7 @@
 
 .register-subtitle {
   margin-bottom: 2.5rem;
-  color: #64748b;
+  color: #94a3b8;
   font-size: 1rem;
   font-weight: 500;
 }
@@ -93,30 +102,34 @@
 .input-group label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #1e293b;
-  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  font-size: 1rem;
 }
+
 .input-group input {
   width: 100%;
   padding: 1rem 1.25rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid #334155;
   border-radius: 12px;
   font-size: 1rem;
   box-sizing: border-box;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: #1e293b;
+  color: #f1f5f9 !important;
   font-weight: 500;
 }
+
 .input-group input::placeholder {
-  color: #94a3b8;
+  color: #64748b !important;
 }
+
 .input-group input:focus {
   outline: none;
   border-color: #0ea5e9;
   box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
-  background-color: #ffffff;
+  background-color: #0f172a;
+  color: #f1f5f9 !important;
 }
 
 /* === Role Selector === */
@@ -129,18 +142,19 @@
 .role-selector button {
   flex: 1;
   padding: 1rem;
-  border: 2px solid #e2e8f0;
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 2px solid #334155;
+  background: #1e293b;
   border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
-  color: #475569;
+  color: #cbd5e1;
   font-size: 0.95rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .role-selector button:hover {
   border-color: #0ea5e9;
+  background: #0f172a;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
 }
@@ -152,23 +166,18 @@
   box-shadow: 0 6px 16px rgba(14, 165, 233, 0.3);
 }
 
-.role-selector button:hover {
-  background-color: #3f4f66;
-  border-color: #6366f1;
-}
-
 .role-selector button.active {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #0ea5e9 0%, #a855f7 100%);
   color: #ffffff;
-  border-color: #6366f1;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
 }
 
 /* === Main Button & Redirect Text (Shared) === */
 .register-button {
   width: 100%;
   padding: 0.9rem;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #0ea5e9 0%, #a855f7 100%);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -180,13 +189,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
 }
+
 .register-button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #5b52eb 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #9333ea 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
 }
+
 .register-button:disabled {
   background: linear-gradient(135deg, #475569 0%, #64748b 100%);
   cursor: not-allowed;
@@ -195,24 +206,27 @@
 
 .error-message {
   color: #fca5a5;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%);
   padding: 0.75rem;
   border-radius: 6px;
   margin-bottom: 1.5rem;
   text-align: center;
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
+
 .redirect-text {
   margin-top: 2rem;
   font-size: 0.9rem;
-  color: #94a3b8;
+  color: #cbd5e1;
 }
+
 .redirect-link {
   color: #a78bfa;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s;
 }
+
 .redirect-link:hover { 
   text-decoration: underline; 
   color: #c4b5fd;
@@ -284,16 +298,17 @@
 .password-requirements {
   margin-top: 0.75rem;
   padding: 1rem;
-  background: linear-gradient(135deg, rgba(51, 65, 85, 0.6) 0%, rgba(71, 85, 105, 0.6) 100%);
-  border-radius: 6px;
-  border: 1px solid #475569;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 8px;
+  border: 1px solid #334155;
 }
 
 .password-requirements small {
   font-weight: 600;
-  color: #e2e8f0;
+  color: #f1f5f9;
   display: block;
   margin-bottom: 0.5rem;
+  font-size: 0.875rem;
 }
 
 .password-requirements ul {
@@ -304,7 +319,7 @@
 
 .password-requirements li {
   font-size: 0.875rem;
-  color: #94a3b8;
+  color: #cbd5e1;
   margin-bottom: 0.25rem;
   position: relative;
 }
