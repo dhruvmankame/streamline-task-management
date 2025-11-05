@@ -86,9 +86,33 @@
 .strength-text { font-size: 0.85rem; }
 .field-errors { display: grid; gap: 4px; margin-top: 6px; }
 .error-text { color: #ef4444; font-size: 0.85rem; }
-.password-requirements { margin-top: 6px; }
-.password-requirements ul { margin-left: 16px; color: var(--muted); }
-.password-requirements li.valid { color: #10b981; }
+.password-requirements { 
+  margin-top: 6px; 
+  background: var(--bg-tertiary);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+.password-requirements small {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+.password-requirements ul { 
+  margin-left: 16px; 
+  margin-top: 8px;
+  margin-bottom: 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+.password-requirements li { 
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+.password-requirements li.valid { 
+  color: #10b981; 
+  font-weight: 600;
+}
 
 @media (max-width: 900px) {
   .settings-page { grid-template-columns: 1fr; }
