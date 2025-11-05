@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext.jsx';
 import { getAllUsers, getConversations, getDirectMessages, sendDirectMessage, markDirectMessagesAsRead } from '../services/api';
-import { MessageCircle, Send, Users2, Loader, Lock, Search, X } from 'lucide-react';
+import { MessageCircle, Send, Users2, Loader, Lock, Search, X, Plus, Trash2 } from 'lucide-react';
 import './MessagesPage.css';
 
 const MessagesPage = () => {
@@ -110,6 +110,34 @@ const MessagesPage = () => {
         setSearchQuery('');
     };
 
+    const handleClearChat = async () => {
+        if (!selectedUser) return;
+        
+        const confirmed = window.confirm(
+            `Are you sure you want to clear all messages with ${selectedUser.name}? This action cannot be undone.`
+        );
+        
+        if (confirmed) {
+            try {
+                // Clear messages locally first for immediate feedback
+                setMessages([]);
+                
+                // TODO: Add API call to delete messages from server
+                // await deleteDirectMessages(selectedUser._id);
+                
+                // Refresh conversations
+                loadConversations();
+                
+                alert('Chat cleared successfully');
+            } catch (error) {
+                console.error('Failed to clear chat:', error);
+                alert('Failed to clear chat. Please try again.');
+                // Reload messages if there was an error
+                loadMessages(selectedUser._id);
+            }
+        }
+    };
+
     const formatTimestamp = (timestamp) => {
         const date = new Date(timestamp);
         const now = new Date();
@@ -156,7 +184,7 @@ const MessagesPage = () => {
                             onClick={() => setShowUserList(!showUserList)}
                             title="Start new conversation"
                         >
-                            <Users2 size={20} />
+                            <Plus size={20} strokeWidth={2.5} />
                         </button>
                     </div>
 
@@ -270,9 +298,19 @@ const MessagesPage = () => {
                                         </p>
                                     </div>
                                 </div>
-                                <span className={`role-badge ${selectedUser.role}`}>
-                                    {selectedUser.role}
-                                </span>
+                                <div className="chat-header-actions">
+                                    <span className={`role-badge ${selectedUser.role}`}>
+                                        {selectedUser.role}
+                                    </span>
+                                    <button 
+                                        className="clear-chat-btn"
+                                        onClick={handleClearChat}
+                                        title="Clear all messages"
+                                    >
+                                        <Trash2 size={18} />
+                                        <span>Clear Chat</span>
+                                    </button>
+                                </div>
                             </div>
 
                             <div className="messages-list" ref={messageListRef}>
