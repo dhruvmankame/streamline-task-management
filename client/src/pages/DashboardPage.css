@@ -1445,3 +1445,95 @@
     padding: 0.35rem 0.6rem;
   }
 }
+
+/* Dark Mode Overrides */
+[data-theme="dark"] .project-status.planning {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.25) 0%, rgba(168, 85, 247, 0.15) 100%) !important;
+  color: #d8b4fe !important;
+  border: 1px solid rgba(168, 85, 247, 0.4) !important;
+}
+
+[data-theme="dark"] .project-status.in-progress,
+[data-theme="dark"] .project-status.ongoing {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(14, 165, 233, 0.15) 100%) !important;
+  color: #7dd3fc !important;
+  border: 1px solid rgba(14, 165, 233, 0.4) !important;
+}
+
+[data-theme="dark"] .project-status.completed {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.25) 0%, rgba(34, 197, 94, 0.15) 100%) !important;
+  color: #86efac !important;
+  border: 1px solid rgba(34, 197, 94, 0.4) !important;
+}
+
+[data-theme="dark"] .project-status.on-hold {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.25) 0%, rgba(249, 115, 22, 0.15) 100%) !important;
+  color: #fdba74 !important;
+  border: 1px solid rgba(249, 115, 22, 0.4) !important;
+}
+
+[data-theme="dark"] .priority-badge.high,
+[data-theme="dark"] .priority-badge.priority-high {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(239, 68, 68, 0.15) 100%) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
+}
+
+[data-theme="dark"] .priority-badge.medium,
+[data-theme="dark"] .priority-badge.priority-medium {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.25) 0%, rgba(249, 115, 22, 0.15) 100%) !important;
+  color: #fdba74 !important;
+  border: 1px solid rgba(249, 115, 22, 0.4) !important;
+}
+
+[data-theme="dark"] .priority-badge.low,
+[data-theme="dark"] .priority-badge.priority-low {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.25) 0%, rgba(34, 197, 94, 0.15) 100%) !important;
+  color: #86efac !important;
+  border: 1px solid rgba(34, 197, 94, 0.4) !important;
+}
+
+[data-theme="dark"] .status-badge.ongoing { 
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(56, 189, 248, 0.15) 100%) !important;
+  color: #7dd3fc !important;
+  border-color: rgba(14, 165, 233, 0.4) !important;
+}
+
+[data-theme="dark"] .status-badge.completed { 
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.25) 0%, rgba(134, 239, 172, 0.15) 100%) !important;
+  color: #86efac !important;
+  border-color: rgba(34, 197, 94, 0.4) !important;
+}
+
+[data-theme="dark"] .status-badge.on-hold { 
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.25) 0%, rgba(251, 146, 60, 0.15) 100%) !important;
+  color: #fdba74 !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+[data-theme="dark"] .project-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.6) 100%) !important;
+  border: 1px solid rgba(71, 85, 105, 0.4) !important;
+  border-left: 4px solid #0ea5e9 !important;
+}
+
+[data-theme="dark"] .project-card:hover {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%) !important;
+  box-shadow: 0 4px 16px rgba(14, 165, 233, 0.3) !important;
+}
+
+[data-theme="dark"] .project-card-content {
+  background: transparent !important;
+}
+
+[data-theme="dark"] .project-card-header h3 {
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .project-dates {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .progress-text {
+  color: #7dd3fc !important;
+}
