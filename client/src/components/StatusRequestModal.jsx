@@ -43,7 +43,22 @@ const StatusRequestModal = ({ task, onSubmit, onClose }) => {
             }, 1500);
         } catch (err) {
             console.error('Status request error:', err);
-            setError(err.response?.data?.error || 'Failed to submit request');
+            
+            // Better error handling
+            let errorMessage = 'Failed to submit request';
+            
+            if (err.response) {
+                // Server responded with error
+                errorMessage = err.response.data?.error || err.response.data?.message || errorMessage;
+            } else if (err.request) {
+                // Request was made but no response
+                errorMessage = 'Server is not responding. Please check if the server is running.';
+            } else {
+                // Something else happened
+                errorMessage = err.message || errorMessage;
+            }
+            
+            setError(errorMessage);
         } finally {
             setIsSubmitting(false);
         }
