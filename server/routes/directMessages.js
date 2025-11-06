@@ -286,32 +286,8 @@ router.patch('/:userId/read', protect, async (req, res) => {
   }
 });
 
-// DELETE /api/direct-messages/:messageId - Delete a direct message (only sender can delete)
-router.delete('/:messageId', protect, async (req, res) => {
-  try {
-    const messageId = req.params.messageId;
-    const message = await Message.findOne({
-      _id: messageId,
-      messageType: 'direct',
-      userId: req.user._id
-    });
-
-    if (!message) {
-      return res.status(404).json({ 
-        success: false, 
-        error: 'Message not found or you are not authorized to delete it' 
-      });
-    }
-
-    await Message.deleteOne({ _id: messageId });
-    res.json({ success: true, deletedId: messageId });
-  } catch (error) {
-    console.error('Delete message error:', error);
-    res.status(500).json({ success: false, error: 'Failed to delete message' });
-  }
-});
-
 // DELETE /api/direct-messages/clear/:userId - Clear all messages between current user and specified user
+// IMPORTANT: This must come BEFORE the /:messageId route to avoid conflict
 router.delete('/clear/:userId', protect, async (req, res) => {
   try {
     const currentUserId = req.user._id;
@@ -334,6 +310,31 @@ router.delete('/clear/:userId', protect, async (req, res) => {
   } catch (error) {
     console.error('Clear chat error:', error);
     res.status(500).json({ success: false, error: 'Failed to clear chat' });
+  }
+});
+
+// DELETE /api/direct-messages/:messageId - Delete a direct message (only sender can delete)
+router.delete('/:messageId', protect, async (req, res) => {
+  try {
+    const messageId = req.params.messageId;
+    const message = await Message.findOne({
+      _id: messageId,
+      messageType: 'direct',
+      userId: req.user._id
+    });
+
+    if (!message) {
+      return res.status(404).json({ 
+        success: false, 
+        error: 'Message not found or you are not authorized to delete it' 
+      });
+    }
+
+    await Message.deleteOne({ _id: messageId });
+    res.json({ success: true, deletedId: messageId });
+  } catch (error) {
+    console.error('Delete message error:', error);
+    res.status(500).json({ success: false, error: 'Failed to delete message' });
   }
 });
 
