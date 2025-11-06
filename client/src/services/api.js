@@ -126,6 +126,7 @@ export const getDirectMessages = (userId) => api.get(`/direct-messages/${userId}
 export const sendDirectMessage = (userId, data) => api.post(`/direct-messages/${userId}`, data);
 export const markDirectMessagesAsRead = (userId) => api.patch(`/direct-messages/${userId}/read`);
 export const deleteDirectMessage = (messageId) => api.delete(`/direct-messages/${messageId}`);
+export const clearDirectMessages = (userId) => api.delete(`/direct-messages/clear/${userId}`);
 
 // --- Reports API Calls ---
 export const getDashboardStats = () => api.get('/reports/dashboard-stats');

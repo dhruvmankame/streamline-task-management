@@ -311,4 +311,30 @@ router.delete('/:messageId', protect, async (req, res) => {
   }
 });
 
+// DELETE /api/direct-messages/clear/:userId - Clear all messages between current user and specified user
+router.delete('/clear/:userId', protect, async (req, res) => {
+  try {
+    const currentUserId = req.user._id;
+    const otherUserId = req.params.userId;
+
+    // Delete all messages between the two users (in both directions)
+    const result = await Message.deleteMany({
+      messageType: 'direct',
+      $or: [
+        { userId: currentUserId, recipientId: otherUserId },
+        { userId: otherUserId, recipientId: currentUserId }
+      ]
+    });
+
+    res.json({ 
+      success: true, 
+      deletedCount: result.deletedCount,
+      message: `Successfully cleared ${result.deletedCount} message(s)` 
+    });
+  } catch (error) {
+    console.error('Clear chat error:', error);
+    res.status(500).json({ success: false, error: 'Failed to clear chat' });
+  }
+});
+
 export default router;

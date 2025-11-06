@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext.jsx';
-import { getAllUsers, getConversations, getDirectMessages, sendDirectMessage, markDirectMessagesAsRead } from '../services/api';
+import { getAllUsers, getConversations, getDirectMessages, sendDirectMessage, markDirectMessagesAsRead, clearDirectMessages } from '../services/api';
 import { MessageCircle, Send, Users2, Loader, Lock, Search, X, Plus, Trash2 } from 'lucide-react';
 import './MessagesPage.css';
 
@@ -114,26 +114,29 @@ const MessagesPage = () => {
         if (!selectedUser) return;
         
         const confirmed = window.confirm(
-            `Are you sure you want to clear all messages with ${selectedUser.name}? This action cannot be undone.`
+            `Are you sure you want to clear all messages with ${selectedUser.name}? This will delete all messages for both you and ${selectedUser.name}. This action cannot be undone.`
         );
         
         if (confirmed) {
             try {
-                // Clear messages locally first for immediate feedback
+                // Call API to delete messages from server
+                const response = await clearDirectMessages(selectedUser._id);
+                
+                // Clear messages locally for immediate feedback
                 setMessages([]);
                 
-                // TODO: Add API call to delete messages from server
-                // await deleteDirectMessages(selectedUser._id);
-                
-                // Refresh conversations
+                // Refresh conversations to update the last message
                 loadConversations();
                 
-                alert('Chat cleared successfully');
+                alert(`Chat cleared successfully! ${response.data.deletedCount} message(s) deleted.`);
             } catch (error) {
                 console.error('Failed to clear chat:', error);
-                alert('Failed to clear chat. Please try again.');
+                const errorMsg = error.response?.data?.error || 'Failed to clear chat. Please try again.';
+                alert(errorMsg);
                 // Reload messages if there was an error
-                loadMessages(selectedUser._id);
+                if (selectedUser) {
+                    loadMessages(selectedUser._id);
+                }
             }
         }
     };
